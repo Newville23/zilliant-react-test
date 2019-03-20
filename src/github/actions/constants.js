@@ -13,3 +13,5 @@ export const REPOS_ERROR_MSG = 'Could not fetch Repos :(';
 // Repo constants
 export const SELECT_REPO = 'SELECT_REPO';
 export const UNSELECT_REPO = 'UNSELECT_REPO';
+
+export const DISMISS_ERROR = 'DISMISS_ERROR';
