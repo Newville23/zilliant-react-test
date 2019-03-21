@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Avatar, Card, CardTitle, CardText, List, ListItem } from 'react-md'
 
 const RepoCard = ({ repo, selectRepo }) => {
   return (
-    <Card onClick={selectRepo(repo.id)}>
+    <Card onClick={() => selectRepo(repo.id)}>
       <CardTitle
         title={repo.name}
         subtitle={repo.full_name}
@@ -20,6 +21,10 @@ const RepoCard = ({ repo, selectRepo }) => {
       </CardText>
     </Card>
   )
+};
+RepoCard.propTypes = {
+  repo: PropTypes.object.isRequired,
+  selectRepo: PropTypes.func
 }
 
 export default RepoCard

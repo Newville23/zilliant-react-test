@@ -1,13 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Drawer, List, ListItem, Avatar, FontIcon } from 'react-md'
 
-import { connect } from '../store'
-
 const Sidebar = ({ user }) => {
-  console.log(user)
-  return (
-    user
-    ? <Drawer
+  return user ? (
+    <Drawer
       className='sidebar'
       type={Drawer.DrawerTypes.PERSISTENT}
       visible
@@ -16,29 +13,32 @@ const Sidebar = ({ user }) => {
     >
       <List>
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>favorite</FontIcon>}/>}
-          primaryText="Following"
+          leftAvatar={<Avatar icon={<FontIcon>favorite</FontIcon>} />}
+          primaryText='Following'
           secondaryText={user.following}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>group</FontIcon>}/>}
-          primaryText="Followers"
+          leftAvatar={<Avatar icon={<FontIcon>group</FontIcon>} />}
+          primaryText='Followers'
           secondaryText={user.followers}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>folder_special</FontIcon>}/>}
-          primaryText="Public Repos"
+          leftAvatar={<Avatar icon={<FontIcon>folder_special</FontIcon>} />}
+          primaryText='Public Repos'
           secondaryText={user.public_repos}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>local_activity</FontIcon>}/>}
-          primaryText="Public Gists"
+          leftAvatar={<Avatar icon={<FontIcon>local_activity</FontIcon>} />}
+          primaryText='Public Gists'
           secondaryText={user.public_gists}
         />
       </List>
     </Drawer>
-    : null
-  )
+  ) : null
+};
+
+Sidebar.propTypes = {
+  user: PropTypes.object
 }
 
-export default connect(Sidebar)
+export default Sidebar
