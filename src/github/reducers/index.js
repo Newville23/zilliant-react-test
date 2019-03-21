@@ -2,7 +2,7 @@ import * as ActionTypes from '../actions/constants';
 import { combineReducers } from 'redux';
 
 const user = (
-  state = { user: null, isFetchingUser: false, lastSuccessfulUserFetch: null },
+  state = { item: null, isFetchingUser: false, lastSuccessfulUserFetch: null },
   action
 ) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ const user = (
     case ActionTypes.FETCH_USER_SUCCESS:
       return {
         ...state,
-        user: action.user,
+        item: action.user,
         isFetchingUser: false,
         lastSuccessfulUserFetch: new Date()
       }
@@ -38,7 +38,7 @@ const repos = (
       return {
         ...state,
         isFetchingRepos: false,
-        repos: action.repos,
+        items: action.repos,
         lastSuccessfulReposFetch: new Date()
       }
 
@@ -47,31 +47,18 @@ const repos = (
   }
 }
 
-const getRepo = (state, id) => {
-  const selectedRepo = repos.find(repo => repo.id === id)
-  if (selectedRepo) {
-    return selectedRepo
-  }
-}
-
 const selectedRepo = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.SELECT_REPO:
-      const selectedRepo = getRepo(state, action.id)
-      return {
-        ...state,
-        selectedRepo
-      }
+      return action.repo
     case ActionTypes.UNSELECT_REPO:
-      return {
-        ...state,
-        selectedRepo: null
-      }
+      return null
     default:
       return state
   }
 }
 
+// Updates error message to notify about failures
 const errorMessage = (state = null, action) => {
   const { type, errorMsg } = action
   if (type === ActionTypes.DISMISS_ERROR) {

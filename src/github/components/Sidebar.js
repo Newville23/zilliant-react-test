@@ -1,13 +1,11 @@
-import React from 'react'
-import { Drawer, List, ListItem, Avatar, FontIcon } from 'react-md'
+import React from 'react';
+import { Drawer, List, ListItem, Avatar, FontIcon } from 'react-md';
 
-import { connect } from '../store'
+import { connect } from 'react-redux';
 
 const Sidebar = ({ user }) => {
-  console.log(user)
-  return (
-    user
-    ? <Drawer
+  return user.item ? (
+    <Drawer
       className='sidebar'
       type={Drawer.DrawerTypes.PERSISTENT}
       visible
@@ -16,29 +14,28 @@ const Sidebar = ({ user }) => {
     >
       <List>
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>favorite</FontIcon>}/>}
-          primaryText="Following"
-          secondaryText={user.following}
+          leftAvatar={<Avatar icon={<FontIcon>favorite</FontIcon>} />}
+          primaryText='Following'
+          secondaryText={user.item.following}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>group</FontIcon>}/>}
-          primaryText="Followers"
-          secondaryText={user.followers}
+          leftAvatar={<Avatar icon={<FontIcon>group</FontIcon>} />}
+          primaryText='Followers'
+          secondaryText={user.item.followers}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>folder_special</FontIcon>}/>}
-          primaryText="Public Repos"
-          secondaryText={user.public_repos}
+          leftAvatar={<Avatar icon={<FontIcon>folder_special</FontIcon>} />}
+          primaryText='Public Repos'
+          secondaryText={user.item.public_repos}
         />
         <ListItem
-          leftAvatar={<Avatar icon={<FontIcon>local_activity</FontIcon>}/>}
-          primaryText="Public Gists"
-          secondaryText={user.public_gists}
+          leftAvatar={<Avatar icon={<FontIcon>local_activity</FontIcon>} />}
+          primaryText='Public Gists'
+          secondaryText={user.item.public_gists}
         />
       </List>
     </Drawer>
-    : null
-  )
-}
-
-export default connect(Sidebar)
+  ) : null
+};
+const mapStateToProps = ({ user }) => ({ user })
+export default connect(mapStateToProps)(Sidebar)
