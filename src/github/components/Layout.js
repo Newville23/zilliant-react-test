@@ -1,38 +1,38 @@
-import React, { Component } from 'react'
-import { CircularProgress, Snackbar } from 'react-md'
+import React, { Component } from 'react';
+import { CircularProgress, Snackbar } from 'react-md';
 
-import TopBar from './TopBar'
-import Sidebar from './Sidebar'
-import { connect } from '../store'
+import TopBar from './TopBar';
+import Sidebar from './Sidebar';
+import { connect } from 'react-redux';
+import { requestUser, dismissError } from '../actions';
 
 class Layout extends Component {
-
-  componentDidMount() {
-    const { updateUser, lastSuccessfulUserFetch } = this.props
+  componentDidMount () {
+    const { requestUser, user } = this.props
     const now = new Date()
-    if (!lastSuccessfulUserFetch) {
-      updateUser()
-    } else if ((now - lastSuccessfulUserFetch) / 1000 > 300) {
-      updateUser()
+    if (!user.lastSuccessfulUserFetch) {
+      requestUser()
+    } else if ((now - user.lastSuccessfulUserFetch) / 1000 > 300) {
+      requestUser()
     }
   }
 
-  render() {
-    const { isFetchingUser, children, errorMsg, dismissError } = this.props
-    const toasts = errorMsg ? [{ text: errorMsg }] :[]
+  render () {
+    const { user, children, errorMsg, dismissError } = this.props
+    const toasts = errorMsg ? [{ text: errorMsg }] : []
     return (
       <div>
-        {
-          isFetchingUser
-            ? <CircularProgress id='main-progress' />
-            : <div>
-              <TopBar />
-              <div className='main-container'>
-                <Sidebar />
-                {children}
-              </div>
+        {user.isFetchingUser ? (
+          <CircularProgress id='main-progress' />
+        ) : (
+          <div>
+            <TopBar />
+            <div className='main-container'>
+              <Sidebar />
+              {children}
             </div>
-        }
+          </div>
+        )}
         <Snackbar
           id='error-snackbar'
           toasts={toasts}
@@ -43,5 +43,9 @@ class Layout extends Component {
   }
 }
 
+const mapStateToProps = ({ user, errorMsg }) => ({ user, errorMsg })
 
-export default connect(Layout)
+export default connect(
+  mapStateToProps,
+  { requestUser, dismissError }
+)(Layout)

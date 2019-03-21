@@ -6,9 +6,10 @@ import {
   FETCH_REPOS_SUCCESS,
   FETCH_REPOS_FAILURE,
   SELECT_REPO,
-  UNSELESCT_REPO,
+  UNSELECT_REPO,
   USER_ERROR_MSG,
-  REPOS_ERROR_MSG
+  REPOS_ERROR_MSG,
+  DISMISS_ERROR
 } from "./constants";
 
 import { getUser, getRepos } from "../requests";
@@ -78,5 +79,11 @@ export const selectRepo = id => ({
 });
 
 export const unSelectRepo = () => ({
-  type: UNSELESCT_REPO
+  type: UNSELECT_REPO
+});
+
+// Dimiss eror
+
+export const dismissError = () => ({
+  type: DISMISS_ERROR
 });
