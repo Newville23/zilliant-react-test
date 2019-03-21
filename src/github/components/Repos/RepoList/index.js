@@ -1,7 +1,8 @@
-import React from 'react';
-import { Grid, Cell } from 'react-md';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Grid, Cell } from 'react-md'
 
-import RepoCard from './RepoCard';
+import RepoCard from '../RepoCard'
 
 const RepoList = ({ repos, selectRepo }) => {
   return (
@@ -16,5 +17,10 @@ const RepoList = ({ repos, selectRepo }) => {
     </Grid>
   )
 };
+
+RepoList.propTypes = {
+  repos: PropTypes.array.isRequired,
+  selectRepo: PropTypes.func
+}
 
 export default RepoList

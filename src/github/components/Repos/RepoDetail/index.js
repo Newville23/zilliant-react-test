@@ -1,12 +1,7 @@
-import React from 'react';
-import {
-  Paper,
-  Button,
-  DataTable,
-  TableRow,
-  TableColumn,
-  TableBody
-} from 'react-md';
+import React from 'react'
+import { Paper, Button, DataTable, TableRow, TableColumn, TableBody } from 'react-md'
+import PropTypes from 'prop-types'
+import styles from './styles.module.css'
 
 const RepoDetail = ({ repo, unselectRepo }) => {
   let children = []
@@ -29,16 +24,11 @@ const RepoDetail = ({ repo, unselectRepo }) => {
     }
   }
   return (
-    <div style={{ paddingTop: '20px', paddingRight: '20px', width: '100%' }}>
-      <Button
-        onClick={unselectRepo}
-        style={{ marginBottom: '20px' }}
-        mini
-        floating
-      >
+    <div className={styles.detailContainer}>
+      <Button onClick={unselectRepo} className={styles.arrowButoon} mini floating>
         arrow_back
       </Button>
-      <Paper style={{ padding: '20px' }}>
+      <Paper className={styles.paperCard}>
         <h2>{repo.name}</h2>
         <DataTable plain>
           <TableBody>{children}</TableBody>
@@ -47,5 +37,9 @@ const RepoDetail = ({ repo, unselectRepo }) => {
     </div>
   )
 };
+RepoDetail.propTypes = {
+  repos: PropTypes.array,
+  selectRepo: PropTypes.func
+}
 
 export default RepoDetail

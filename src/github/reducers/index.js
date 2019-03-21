@@ -1,5 +1,5 @@
-import * as ActionTypes from '../actions/constants';
-import { combineReducers } from 'redux';
+import * as ActionTypes from '../actions/constants'
+import { combineReducers } from 'redux'
 
 const user = (
   state = { item: null, isFetchingUser: false, lastSuccessfulUserFetch: null },
@@ -59,18 +59,12 @@ const selectedRepo = (state = null, action) => {
 }
 
 // Updates error message to notify about failures
-const errorMessage = (state = null, action) => {
+const errorMsg = (state = null, action) => {
   const { type, errorMsg } = action
   if (type === ActionTypes.DISMISS_ERROR) {
-    return {
-      ...state,
-      errorMsg: null
-    }
+    return null
   } else if (errorMsg) {
-    return {
-      ...state,
-      errorMsg
-    }
+    return errorMsg
   }
   return state
 };
@@ -79,7 +73,7 @@ const rootReducer = combineReducers({
   user,
   repos,
   selectedRepo,
-  errorMessage
+  errorMsg
 })
 
 export default rootReducer

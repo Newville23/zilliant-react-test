@@ -1,5 +1,6 @@
-import React from 'react';
-import { Avatar, Card, CardTitle, CardText, List, ListItem } from 'react-md';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Avatar, Card, CardTitle, CardText, List, ListItem } from 'react-md'
 
 const RepoCard = ({ repo, selectRepo }) => {
   return (
@@ -21,5 +22,9 @@ const RepoCard = ({ repo, selectRepo }) => {
     </Card>
   )
 };
+RepoCard.propTypes = {
+  repo: PropTypes.object.isRequired,
+  selectRepo: PropTypes.func
+}
 
 export default RepoCard

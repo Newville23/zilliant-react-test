@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { CircularProgress } from "react-md";
 
 import { connect } from "react-redux";
-import { fetchRepos, selectRepo, unSelectRepo } from "../actions";
-import RepoList from "./RepoList";
-import RepoDetail from "./RepoDetail";
+import { fetchRepos, selectRepo, unSelectRepo } from "../../actions";
+import { RepoList, RepoDetail } from "../../components/Repos";
 
 class Repos extends Component {
   componentDidMount() {

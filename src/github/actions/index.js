@@ -10,9 +10,9 @@ import {
   USER_ERROR_MSG,
   REPOS_ERROR_MSG,
   DISMISS_ERROR
-} from './constants';
+} from './constants'
 
-import { getUser, getRepos } from '../requests';
+import { getUser, getRepos } from '../requests'
 
 // Getting User from Github
 export const requestUser = () => ({
